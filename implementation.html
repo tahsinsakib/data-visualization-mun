@@ -1,0 +1,38 @@
+<!-- COMP 4304, Term Project, Name: Tahsin Ahmed Sakib, Student no: 201653763,  Submitted on: 07/12/2020-->
+
+<html>
+
+    <head>
+
+        <title>COMP4304.Project.201653763</title>
+        <meta charset="UTF-8">
+        
+        <script src="https://d3js.org/d3.v4.js"></script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+        <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+        <script src="views.js"></script>     
+
+    </head>
+
+    <body>
+
+        <section id="mapsection"></section>
+
+        <section id="linesection">
+            <label for="myselection"><b>Country to be compared to USA:</b></label>
+            <select id="myselection"></select>
+            <label for="myselection2"><b>Attribute (line chart):</b></label>
+            <select id="myselection2">
+                <option>total_cases</option>
+                <option>new_cases</option>
+                <option>total_deaths</option>
+                <option>new_deaths</option>
+            </select>
+        </section>
+
+        <section id="barsection"></section>
+
+    </body>
+
+</html>

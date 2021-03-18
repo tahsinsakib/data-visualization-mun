@@ -1,0 +1,332 @@
+<!-- COMP 4304, Term Project, Name: Tahsin Ahmed Sakib, Student no: 201653763,  Submitted on: 07/12/2020-->
+
+<html>
+
+    <head>
+
+        <title>COMP4304.Project.201653763</title>
+        <meta charset="UTF-8">
+
+    </head>
+
+    <body>
+
+        <section>
+            <h1>
+                COMP 4304 - Data Visualization
+            </h1>
+            <h3>
+                Term Project: Final Report
+            </h3>
+            <h3>
+                Student name: Tahsin Ahmed Sakib (id: 201653763)
+            </h3>
+            <h4>
+                Subject: Using data visualization, explore and attempt to answer the broad question of how well the USA handled the covid-19 pandemic compared to other countries.
+            </h4>
+            <br>
+        </section>
+
+        <section>
+            <h3><u>Attribution</u></h3>
+            <p>
+                <ul>
+                    <li>
+                        I used the d3 library (version 4) for this project which has been imported from the web: <a href="https://d3js.org/d3.v4.js" target="_blank">https://d3js.org/d3.v4.js</a>
+                    </li>
+                    <li>
+                        I imported a d3 color scheme from the web to represent the visualization designs' colors: <a href="https://d3js.org/d3-scale-chromatic.v1.min.js" target="_blank">https://d3js.org/d3-scale-chromatic.v1.min.js</a>
+                    </li>
+                    <li>
+                        I also used the plotly library for the project which has also been imported from the web: <a href="https://cdn.plot.ly/plotly-latest.min.js" target="_blank">https://cdn.plot.ly/plotly-latest.min.js</a>
+                    </li>
+                    <li>
+                        To learn how to wrangle datasets in a more convenient way, I have studied and drawn ideas from some of the code, that combined .csv files with .geojson files' features, written originally by Dr. Edward Brown on his COMP4304 course webpage: <a href="http://www.cs.mun.ca/~brown/dvisvideos/zoomdrag3.mp4" target="_blank">http://www.cs.mun.ca/~brown/dvisvideos/zoomdrag3.mp4</a>
+                    </li>
+                    <li>
+                        I imported the .geojson file for the world map from the following link: <a href="https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson" target="_blank">https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson</a>
+                    </li>
+                    <li>
+                        I imported the geo projection library to draw the world map from here: <a href="https://d3js.org/d3-geo-projection.v2.min.js" target="_blank">https://d3js.org/d3-geo-projection.v2.min.js</a>
+                    </li>
+                    <li>
+                        I studied and drawn inspiration from Mike Bostock's d3 dispatching events to help co-ordinate my design ideas: <a href="https://bl.ocks.org/mbostock/5872848" target="_blank">https://bl.ocks.org/mbostock/5872848</a>
+                    </li>
+                    <li>
+                        I gained ideas from d3-graph-gallery's line chart section on how to use margins to manipulate spacing of axes and the line chart itself: <a href="https://www.d3-graph-gallery.com/graph/line_basic.html" target="_blank">https://www.d3-graph-gallery.com/graph/line_basic.html</a>
+                    </li>
+                    <li>
+                        I studied plotly barplots from plotly's website and gained knowledge from there on how to manipulate datasets and click events: <a href="https://plotly.com/javascript/bar-charts/" target="_blank">https://plotly.com/javascript/bar-charts/</a>
+                    </li>
+                    <li>
+                        The datasets used in this project have been collected from the Our World in Data (OWID) website which are open-source data. And it is mentioned on the website that the data are free for everyone to use for all purposes: <a href="https://ourworldindata.org/coronavirus-source-data" target="_blank">https://ourworldindata.org/coronavirus-source-data</a>
+                    </li>
+                    <li>
+                        From Tamara Munzner's textbook, I have thouroughly studied her what-why-how analyses framework and applied relevant analyses in my project from it: <a href="https://www.cs.ubc.ca/~tmm/vadbook/" target="_blank">https://www.cs.ubc.ca/~tmm/vadbook/</a>
+                    </li>
+                    <li>
+                        Part A of the project submission can be found here: <a href="http://www.cs.mun.ca/~tasakib/csdatavis/project/partA.html" target="_blank">http://www.cs.mun.ca/~tasakib/csdatavis/project/partA.html</a>
+                    </li>
+                    <li>
+                        Part B of the project submission can be found here: <a href="http://www.cs.mun.ca/~tasakib/csdatavis/project/partB.html" target="_blank">http://www.cs.mun.ca/~tasakib/csdatavis/project/partB.html</a>
+                    </li>
+                    <li>
+                        This project has been independently completed by me and I did not acquire any external help other than the links provided above.
+                    </li>
+                </ul>
+            </p>
+            <br>
+        </section>
+
+        <section>
+            <h3><u>Problem description and objectives</u></h3>
+            <p>
+                The main objective for the project is: <i>how successful has the USA been in responding to the COVID-19 pandemic compared to other countries?</i> As I previously discussed in part B of the project, this can be re-phrased as: <i>how successful has the USA been in flattening the covid-19 pandemic curve compared to other countries?</i> This is because the phrase "flattening the curve" can help us understand the objective better. This really does bring us back to the fact that, ultimately, if countries work together to bring the active numbers of covid-19 cases down to zero or "flatten" the curve, there will be no more outbreak. So, after putting a lot of thoughts into this, I decided that, instead of using some very specific and unique attributes like I considered doing earlier (e.g. number of tests that come back positive), I think that using generic attributes such as number of cases and deaths are the best measure of a country's response to the pandemic. Because, at the end of the day, the country that has managed to keep those numbers down is the closest to flattening the curve. Also, the impact on a country's economic output such as GDP due to the virus can also be considered an important aspect of our objective. Because, regardless of how much of the demographics suffered loss from the pandemic, the comparative resilience of a country's economic output can also indicate faster recovery from the pandemic than others. This also affects quality of life, jobs, affordability, better opportunities created faster for citizens post-pandemic etc. Thus, these contribute to a more robust government's pandemic response plan. So, based on my new observations and decisions, following given are the main goal and one subgoal that will help us break the objective down and come up with visualization designs.
+            </p>
+            <p>
+                <b>Main goal (re-phrased)</b>: How successful has the USA been in flattening the covid-19 pandemic curve compared to other countries?
+            </p>
+            <p>
+                <b>Sub-goal</b>: To what extent has the covid-19 pandemic impacted the US economy compared to other major economies and entities of the world?
+            </p>
+
+            <p>
+                <b>Materials</b>: Please refer to the "Attributes" section above for the libraries that I have used for this project. The two datasets that I used for this project have been collected from Our World in Data (OWID) website. The main dataset is stored in a file called "owid-covid-data.csv". This dataset is updated every day with new numbers and contains data from all countries of the world on a range of attributes such as total cases, deaths, recoveries etc dating between first few weeks of the pandemic until today. I imported the file into my javascipt file directly linking to the web dataset. I have also stored a downloaded copy in "project/data/final/" if the marker needs to take a look at the file or in case the library fails to import the file from the web. The second file that I used in this project is called "project/data/final/economic-decline-in-the-second-quarter-of-2020.csv". This file contains economic data or more specifically the GDP growth of several major economies of countries and entities (e.g. G7, EU etc). This file has been downloaded from <a href="https://ourworldindata.org/covid-health-economy" target="_blank">here</a>.
+            </p>
+            <br>
+        </section>
+
+        <section>
+            <h3><u>Data, methods, analyses and designs</u></h3>
+            <p>
+                <b>Data wrangling</b>: The two datasets I have used to produce the data visualizations for this project are mentioned in the "Materials" sub-section under "Problem description and objective" section above. I have used these two files to import all available covid-19 data for all the countries. I did not need to do any pre-processing on these files. I used them as they were. But, I have slightly modified the "project/data/final/world.geojson" file to make it more compatible with my program. I removed Antarctica and Greenland from the file and thus the world map, because I felt like their data aren't significant for this project and they were taking extra screen space. Also, I have renamed a few countries' names in the file, just to make them more consistent with our OWID covid-19 datasets. Such as, "USA" was renamed to "United States"; and "England to "United Kingdom" and so on. Now, most of the data wrangling that I have performed within the code has been done with standard javascript and d3 map and array methods. I have not used any library for this purpose. The OWID dataset is too big, so we have to filter accordingly before we can use it. Overall, including pre-processing and wrangling in code, I spent around two hours in understanding how I can integrate the huge dataset and other files within my project. Moreover, I did not pre-process and remove the un-used attributes, because I plan to extend this project in the future and I might use these data. I am also leaving the scope for representing other data in the same program I have because it has most things implemented and slight modification can take the project much farther.
+            </p>
+            <p>
+                <b>What analysis</b>: The following given is a Munzner-style what analysis of the datasets mentioned above in terms of the goal and sub-goal discussed for the project. Please note that I have analyzed only the attributes that are relevant to the project objectives and visualization designs. I have not discussed all the attributes as there are way too many and they do not really reflect the goal and subgoal as much, at least for now. But, good thing is, the way the program is designed, just slight tweaks can allow us to use many new attributes and thus extend this project much further potentially.
+            </p>
+            <ul>
+                <li>
+                    <a href="https://covid.ourworldindata.org/data/owid-covid-data.csv" target="_blank">owid-covid-data.csv</a>
+                    <ul>
+                        <br>
+                        <li>
+                            Dataset type: <b>table</b>. Note: there is also potential to present this data as a geometry (spatial) type using the "iso_code" or "location" attribute, as each country could potentially be located on a world map using an external lookup method or by exporting the relevant value to a .geojson file where a country would have the same name or country code. The latter is exactly what we will be doing to illustrate one of our visualizations for this project.
+                        </li>
+                        <br>
+                        <li>
+                            Attributes' types:
+                            <ul>
+                                <li>
+                                    "iso_code": <b>categorical</b>. This attribute consists of unique country codes. The same country codes appear on several rows because the data is given for the same countries for many different dates ranging from the first day of detection of a confirmed covid case until the day the file was downloaded or imported from the web. This attribute is also helpful to pull data from a .geojson file and integrate to draw a map, which is what we're going to do in this project.
+                                </li>
+                                <li>
+                                    "location": <b>categorical</b>. This attribute indicates a country's name. For the same reason as mentioned in description of "iso_code" attribute, the names appear in several rows. The names are helpful to represent data on visualization designs, such as by creating tooltips, labels, titles, console outputs etc.
+                                </li>
+                                <li>
+                                    "date": <b>ordered, ordinal and sequential</b>. This attribute indicates the date on which the corresponding covid-19 data were recorded. The date is formatted as YYYY-MM-DD. So, this has some cyclical aspect to it as well.
+                                </li>
+                                <li>
+                                    "total_cases": <b>ordered, quantitative and sequential</b>. On a specific date, this attribute presents the total number of covid-19 cases detected in a country until that day since beginning of the pandemic.
+                                </li>
+                                <li>
+                                    "new_cases": <b>ordered, quantitative and sequential</b>. This attribute reports the total number of new covid-19 cases that has been detected on a single day in a specific country.
+                                </li>
+                                <li>
+                                    "total_deaths": <b>ordered, quantitative and sequential</b>. On a specific date, this attribute presents the total number of covid-19 related deaths occurred in a country until that day since beginning of the pandemic.
+                                </li>
+                                <li>
+                                    "new_deaths": <b>ordered, quantitative and sequential</b>. This attribute shows the total number of new covid-19 related deaths that has been reported on a single day in a specific country.
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <br>
+                <li>
+                    <a href="http://www.cs.mun.ca/~tasakib/csdatavis/project/data/final/economic-decline-in-the-second-quarter-of-2020.csv" target="_blank">economic-decline-in-the-second-quarter-of-2020.csv</a>
+                    <ul>
+                        <br>
+                        <li>
+                            Dataset type: <b>table</b>. Note: there is also potential to present this data as a geometry (spatial) type using the "Entity" attribute, as each country or entity could potentially be located on a world map using an external lookup method.
+                        </li>
+                        <br>
+                        <li>
+                            Attributes' types:
+                            <ul>
+                                <li>
+                                    "Entity": <b>categorical</b>. This attribute consists of country names for each data entry.
+                                </li>
+                                <li>
+                                    "Code": <b>categorical</b>. This attribute indicates a country's unique code. Helpful in co-ordinating this data with the other dataset and the .geojson file.
+                                </li>
+                                <li>
+                                    "GDP growth from previous year, 2020 Q2": <b>ordered, quantitative and sequential</b>. This attribute outlines the growth in GDP(Gross Domestic Product) in the second quarter (Q2) of 2020 compared to the Q2 of last year (2019). This dataset is helpful in understanding the effect the pandemic has had on a country's overall financial condition and the potential for recovery after the pandemic is "over".
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br>
+            <p>
+                <b>Why analysis</b>: The following given is a Munzner-style why analysis or produced {action,target} pairs for the goal and subgoal mentioned above.
+                <ul>
+                    <li>
+                        <b>Main goal (re-phrased)</b>: How successful has the USA been in flattening the covid-19 pandemic curve compared to other countries?
+                        This is a very broad goal and we have a very large dataset supporting it. Thus, there are a vast array of ways we can form why analysis for this objective. The following is only one way out of several possibilities.
+                        <ul>
+                           <li>
+                                <b>"analyze" level</b>: <i>"discover trends"</i>. I select "discover" because I am trying to come up with a hypothesis regarding covid-19 statistics for the US compared to other countries. Maybe the hypothesis is "they did okay" or maybe "they did horrible". We won't know until we discover. And, I choose "trends" because there are plenty of attributes from the datasets we can use to help hypothesize. We can discover what kind of trends the data for specific attributes show and see if they are downward or upward. And then, down below at the "query" level we can proceed further with this information.
+                           </li>
+                           <li>
+                                <b>"search" level</b>: <i>"browse trends"</i>. Here I went with "browse" because we know the location where to look for such as the OWID dataset, but we don't know yet what exactly to look for i.e the target. Because, there are just so many different attributes to compare. And, I selected "trends" because of similar reason as for "analyze" level where I picked "trends" as well. I am looking for interesting trends that will help me decide whether or not or how well the USA handled the pandemic. Upwards trends in several of the covid stats would mean negative for the US.
+                            </li>
+                            <li>
+                                <b>"query" level</b>: <i>"compare trends"</i>. I selected "compare" because after we have gone through "analyze" and "search" levels, finally we are ready to compare. According to Munzner, "compare" is used often when we have the scope of multiple targets. We do have that scope due to our very large dataset. I selected "trends" here in this level as well, because we can understand the pandemic better if we compare between two countries. One of the most important things we can compare is trends of several covid-19 statistics.
+                            </li>
+                        </ul>
+                    </li>
+                    <br>
+                    <li>
+                        <b>Sub-goal</b>: To what extent has the covid-19 pandemic impacted the US economy compared to other major economies and entities of the world?
+                        This subgoal is not as broad as the main goal. Thus, forming why analysis will require studying and use of much smaller datasets.
+                        <ul>
+                            <li>
+                                <b>"analyze" level</b>: <i>"discover outliers"</i>. Here, I selected "discover" because we are trying to generate a hypothesis regarding the economic impacts of covid-19 on the US economy. I select "outliers" because I am expecting to see similar distributions across economic data, because the pandemic hurt all countries to some extent. But maybe there are data which might be of interest such as little effect of the virus on economy to too large of an effect. This might help us compare such countries to the US and see how the US did comparatively.
+                            </li>
+                            <li>
+                                <b>"search" level</b>: <i>"lookup distribution"</i>. I chose "lookup" because I know the location of the search activity and I also know the target which is economic growth/decline. I select "distribution" because it is suitable for one attribute which is the economic output/growth.
+                             </li>
+                             <li>
+                                <b>"query" level</b>: <i>"identify extremes"</i>. "Identify" is suitable for scope of a single target which we do have for this dataset. That's why I select it. Maybe we can identify certain data of interest. This brings us to "extremes" which I selected because of reason mentioned at "analyze" level. I am trying to identify values on both ends of the spectrum. Either the country that surprisingly did well or did extremely poor. We'll then have an idea of where the US fits inbetween.
+                             </li>
+                         </ul>
+                    </li>
+                </ul>
+            </p>
+            <br>
+            <p>
+                <b>Design/Visualizations</b>: For this project, I have implemented three co-ordinated visualization designs. So, I identify all three for marking purposes. The implementation of the co-ordinated visualization designs <a href="http://www.cs.mun.ca/~tasakib/csdatavis/project/implementation.html" target="_blank">can be found here</a>. For this report, I am going to provide screenshots of individual designs and describe each seperately.
+                <br><br>
+                <p>
+                    <b><u>Design 1</u></b>:
+                </p>
+                <p>
+                    <b>Illustration</b>:
+                </p>
+                <img src="data/final/figures/figure1.jpg" height="250" alt="Figure 1: Choropleth.">
+                <p>
+                    <b>Description and purpose</b>: The first design illustrates a choropleth or colored map of the world. This map is drawn using the world.geojson file provided and d3 library functions. The purpose of this map is to show us the total number of covid-19 cases around the world with the color of a country map adjusted (between light and dark green) to its covid cases. The data is latest as of December 4th, 2020; because that is when the implementation was finalized. We can easily modify the program to represnt various other attributes on this map and change the date to a later date. Please note that if a country's color is grey it means that data isn't available for that country. I have implemented a tooltip to show a country's name and its current number of cases. To see that, we just need to hover our cursor over a country. Also, I have removed Antarctica and Greenland from the map as I discussed previously in the data wrangling section. For marking, I will re-state the purpose: to represent the total number of covid-19 cases using color adjusted to values. In terms of objectives previously discussed, this design is relevant to the main goal: how well the USA handled pandemic. It is relevant because it shows us the countries that have the most cases of the virus having darker green color. So the reader can quickly locate those countries visually. Higher concentration of cases means worsening circumstances for a country. For USA, we see that it has the highest cases worldwide. How does this map relate to the goal? By telling us that the US did not do the greatest job at keeping the numbers down.
+                </p>
+                <p>
+                    <b>How analysis</b>:
+                    <ul>
+                        <li>
+                            <b>Idiom</b>: The idiom used in this design is a <i>choropleth map</i>. In a choropleth map, we use given data to represent as magnitude in terms of color. The idiom is used as it is, but there are slight modifications to it which I will discuss in the co-ordination section.
+                        </li>
+                        <li>
+                            <b>Marks and channels</b>: In our dataset, as mentioned previously in our what analysis, the covid cases data are quantitative (ordered and sequential). Thus, according to Munzner's text, the appropirate mark used for this type of data on a choropleth like above is "<i>geometric area</i>". And, the proper visual channel that is used to convey such data is "<i>colour saturation</i>". The change in colour saturation can be used very effectively to represent attributes like covid cases, as our visual systems are well equipped to process them. On Munzner's text's page 94, she describes colour saturation as the proper magnitude channel for ordered attributes. In my opinion, use of idiom of choropleth is appropriate in this case because it gives us a quick overview of total number of cases through such a mark and a channel which are meant for attributes as such.
+                        </li>
+                        <li>
+                            <b>Guideline and principles</b>: According to Munzner's guidelines, we can critique this type of design by the rule of thumb: "<i>eyes beat memory</i>". According to this rule, humans are better at recognizing differences between two views that are visible on the screen at the same time, compared to when we have to switch between tabs or scrolling back and forth between those views. For example, if I decided to implement two choropleths instead of just one, I would have to fit them both side-by-side so that the reader can interpret them better. If I placed one of them at the bottom of the page and the reader had to scroll back and forth, it would be much harder to see the similarities and differences. Especially because color saturation is used to represent data on these views.
+                        </li>
+                    </ul>
+                </p>
+                <br>
+                <p>
+                    <b><u>Design 2</u></b>:
+                </p>
+                <p>
+                    <b>Illustration</b>:
+                </p>
+                <img src="data/final/figures/figure2.jpg" height="350" alt="Figure 2: Line chart.">
+                <p>
+                    <b>Description and purpose</b>: The second design demonstrates a line chart. This is implemented using d3 library functions. There are two dropdown menus implemented above the line chart. First one gives the user an option to select a country out of all countries of the world. The second one gives the user option to select one among four attributes: total covid cases, new cases, total deaths and new deaths. The default selections are "Brazil" and "total cases" for them respectively. The line chart shows two lines simultaneously. One line is of covid data of the US which is the default country and doesn't change. The other line is of Brazil's. But it can be changed by selecting a country from the dropdown. The y axis shows the attribute values and x axis shows the timeline which is basically almost the whole year of 2020. The change in the attribute dropdown is also co-ordinated so that when we select a new attribute, it selects the corresponding data for the US and selected country from the first dropdown. It also triggers change in the y axis' scale as different attributes have different scales and also it changes the label for y axis. I implemented a small tooltip as well which shows the corresponding country name close to (0,0) of the chart when we hover over one of the lines. Now, the purpose of the line chart is to show side-by-side comparison of covid data between the US and another country on several attributes. switching between the countries and attributes, we can see how the US compares to many other countries of the world in terms of these numbers. This is why the purpose of this chart is related to the main goal of our project. By making country to country comparisons, we can hypothesize on how well the US handled the pandemic.
+                </p>
+                <p>
+                    <b>How analysis</b>:
+                    <ul>
+                        <li>
+                            <b>Idiom</b>: The idiom for this design is a "<i>line chart</i>". The idiom is used as is. But, the addition of an extra line data on the chart is an extension as usually line charts consist of one line. The addition of dropdown menus can be considered extension of this idiom as well. Further extension is discussed in the co-ordination section.
+                        </li>
+                        <li>
+                            <b>Marks and channels</b>: The marks for a line chart like this is "<i>points</i>" which are connected by "<i>lines</i>". As we can see, the attributes used in this design are all quantitative data. For conveying such data, use of channel "<i>aligned lengths</i>" is appropriate in Munzner's framework. Combination of them is well presented on an idiom like line chart because line charts show us trends of variables. By showing us both lines in the same chart, it is easy for a user to distinguish between upward and downward trends and compare how the US faired in these categories.
+                        </li>
+                        <li>
+                            <b>Guideline and principles</b>: This design can be discussed in terms of Munzner's rule of thumb: "responsiveness is required". According to this principle, the latency of interaction i.e the time it takes for the system to respond to user interation is very important. The perceptual processing by human visual systems is affected by it. In our line chart, if the interaction between dropdown selections and plotting of lines took significant time, the user could be less efficient at judging the difference between two countries on different variables.
+                        </li>
+                    </ul>
+                </p>
+                <br>
+                <p>
+                    <b><u>Design 3</u></b>:
+                </p>
+                <p>
+                    <b>Illustration</b>:
+                </p>
+                <img src="data/final/figures/figure3.jpg" height="200" alt="Figure 3: Bar graph.">
+                <p>
+                    <b>Description and purpose</b>: Lastly, the third design consists of a bar graph. It has been implemented using plotly.js library. This graph represents economic data for several countries and entities. It shows the growth in GDP, in percentages, in the second quarter(Q2) of 2020 compared to last year 2019's Q2. The bars are also colored according to the percentages ranging between a "coral red" and a "dark purple". The purpose of this graph is to compare between the US and several other major economies of the world in terms of how their economies performed pre-pandemic vs after the pandemic started. This design is used to address the sub-goal we discussed above which is about the economic output of the US compared to others. Looking at the bar graph and identifying potential outliers in the data can help us understand America's economic circumstances on a global scale.
+                </p>
+                <p>
+                    <b>How analysis</b>:
+                    <ul>
+                        <li>
+                            <b>Idiom</b>: The idiom used for this design is a "<i>bar chart</i>". The bar chart idiom is used as it is. But the addition of color scale for bars is an extension to it. Also, both positive and negative values are represented using this chart whereas regular charts only show positive values. Finally, some co-ordination is also applied to this chart which is discussed later.
+                        </li>
+                        <li>
+                            <b>Marks and channels</b>: The mark used for this chart is "<i>lines</i>". The dataset consists of one quantitative attribute which is a percentage growth out of 100%, and one categorical attribute which is the country or entity name. For these mixed types of data, the idiom of "bar chart" is a very popular option. Also, the appropriate channel for mentioned mark and attributes is "<i>length</i>" which represents higher or lower percentages. Showing all countries side-by-side on this chart, we can visually process the information very fast and we can hypothesize US's position on it in terms of the sub-goal and comparison to outliers.
+                        </li>
+                        <li>
+                            <b>Guideline and principles</b>: The rule of thumb that can be used to analyse our bar chart design is: "<i>eyes beat memory</i>". We discusssed this rule above for our first design and the discussion applies to this design as well. If we were to implement another bar graph using comparison between, lets say, 2018 and 2019 data, we would see a very different picture. Now, if we have one graph on one page and another on another page, we would have a hard time comparing them and hypothesizing the economic differences. But if they're placed on the same screen at the same time, they're easier to distinguish and it will be easier for our eyes to process given data.
+                        </li>
+                    </ul>
+                </p>
+            </p>
+            <br>
+            <p>
+                <b>Co-ordination</b>: There exists co-ordination among all three of my designs. This has been accomplished using d3 dispatcher function calls. The key used to co-ordinate my views is the unique country code every country is assigned in my dataset. The clicking event on a country map on the choropleth triggers a "countrychange" call which causes the selection from the line chart's country selection dropdown menu to be changed accordingly. It also updates the second line plotted to the data for the selected country. The new country's data line on the chart is given a different fill color, so it is easier to distinguish from the previous selection. The selection of a new country from the dropdown menu also reflects on the choropleth by changing border color of selected country to red and changing its opacity and removing other countries' default black borders to highlight it out of all countries. Also, clicking on a country map or selection of a country from dropdown reflects on the bar graph too by highlighting the country bar in "cyan" color on it. Please note that there are many countries whose data is not available for the bar graph. So, many countries' selection on the map or dropdown won't trigger bar graph co-ordination. Lastly, all clicking event on map or selection from dropdown also outputs the selected country's data on the console, so that the user may take a look at filtered data for their country of interest without having to go through the whole huge dataset.
+            </p>
+            <p>
+                <b>Sources</b>: Please refer to the attributes section for more information regarding the sources of inspiration, libraries, design ideas etc.
+            </p>
+            <p>
+                <b>Originality</b>: The use of d3 transition() method is the portion of the project that I consider to be original. This has been applied to both the choropleth and line chart. When you click on a country or select a country from the dropdown menu, the border color of the country smoothly transitions into red and the opacity of the country's color on the map increases and the opacities of other countries decrease and this also happens through smooth transitions. Same thing happens with the line chart. When clicked on a country map or selection of a new one from dropdown, the new line with new data transitions smoothly from the previous line. Same goes for the y axis when you change the attribute being shown. The new scale is represented after a transition. I consider these examples original because transition methods are not part of the idioms' structures according to Munzner's slides.
+            </p>
+            <br>
+        </section>
+
+        <section>
+            <h3><u>Implementation</u></h3>
+            <p>
+                <b>Files and folders</b>: The "project/" folder contains all required files and folders needed to run the project. The homepage for the project can be found at "project/final.html". This page contains the two links to the final project report and the implementation of design. The report is found here: "project/report.html" and the implementation is found here "project/implementation.html". The "views.js" contains all the required codes for the implementation of the designs. The "data/final/" folder contains the covid dataset (as a backup) and the economic dataset and the modified "world.geojson" file. The "data/final/figures/" contains all the figures screenshot from my implementation, which I used in the report for the purpose of illustration.
+            </p>
+            <p>
+                <b>Access</b>: The implementation of the co-ordinated designs can be found here: <a href="http://www.cs.mun.ca/~tasakib/csdatavis/project/implementation.html" target="_blank">http://www.cs.mun.ca/~tasakib/csdatavis/project/implementation.html</a>
+            </p>
+            <p>
+                <b>Sources</b>: Please refer to the "attributes" section and the "sources" sub-section under "design/visualizations" section for more information.
+            </p>
+            <br>
+        </section>
+
+        <section>
+            <h3><u>Conclusion</u></h3>
+            <p>
+                <b>Outcome</b>: Based on the goal and subgoal discussed above, I believe that the visualization choices have not been very successful at hypothesizing the US's success at handling the pandemic. Although, we can see that the views do tell us a lot about America's situation in terms of statistical data. For example, the choropleth shows that the US has the darkest saturation of all countries, so it quickly lets us summarize that the US has the highest number of cases in the world. For a country that has 4.25% of global population, has almost a fifth of global covid cases. This does not indicate a very good handling of the pandemic and the authorities could've done better at limiting the numbers. Same can be observed from the line chart. If we compare the multiple attributes of covid data between the US and other countries, we can see that in almost all combinations the US has beaten everyone across those sad numbers of cases and deaths. This also indicates that the pandemic wasn't handled as good as several other countries. Lastly, in contrast, the bar graph shows us a diifferent but more optimistic picture. We see that the US economy shrunk by 9.5% over a year, but some other developed countries such as Canada (-13.5%) and the UK (-21.6%) have done worse in terms of economic output. Although, in terms of covid cases and deaths, those countries handled the pandemic quite better than the US. This tells us that no matter how bad the situation gets with losses and sufferings of citizens, the US economy is more resilient and stronger than many other economies when it comes to post-pandemic recovery efforts. We can also see that China actually is the only country whose economy grew positively regardless of the fact that the outbreak started from there. This tells us that maybe they were much better equipped and prepared to handle a global pandemic than the US was. Overall, comparing the data, visualization designs, outcomes and the hypotheses I made here, I think that the designs were only partially successful at answering the very broad question. We can conclude that in terms of numbers of cases and deaths, the US has handled the pandemic rather poorly with poor preparedness, but the economic data is promising and indicates a potentially better recovery response than others.
+            </p>
+            <p>
+                <b>Suggestions</b>: The design ideas were limited in that the attributes are very generic and the same design ideas are widespread on the web for this type of data. There aren't many things that are unique or interesting about the designs. But, given more time; and circumstances are less stressful with univesity and life overall; I could improve this project a lot. I would introduce less generic attributes and try to find interesting patterns and hypotheses. For example, I could focus on test data like I mentioned in part B of the project. Also, I could use less common but interesting design ideas such as circular barplot co-ordinated with a stacked area chart to show new covid data. Also, my existing designs can still be improved and presented. I could add a button to add a selected country's data to the line chart from the dropdown menu or the map, along with two or more already plotted lines. This would make it easier for the user to compare US data with many at the same time. I could also add a dropdown menu to the choropleth to represent other attributes on it such as deaths, icu admissions etc.
+            </p>
+            <p>
+                <b>Reflection</b>: In my opinion, the Munzner's what-why-how framework was extremely helpful at making design choices for the datasets. Using what analysis, I could categorize different attributes and research based on those categories to come up with design ideas that are more relevant for certain attributes than others. Moreover, the why analysis helped me understand my goal and sub-goal better. For example, by picking out "outlier" for the analyze level of the analysis, it gave me a new perspective of how I can compare US data with an outlier and hypothesize its position. Finally, the how analysis helped me so much by allowing me to use the ranks of channels in terms of effectiveness and let me choose the best possible way to present data to the user. Overall, I will definitely consider this framework in the future projects whereever I will need to generate visuals.
+            </p>
+            <p>
+                <b>Note for marker</b>: This is regarding my re-submission for the part A of my submissions. I have used choropleth again for my final submission just like I used in part A. But I lost some marks on my part A submission. Based on the feedbacks and marking keys (loss on: FKMP) I received, I made some changes to address those issues, in hope for improving my grade for part A. Marker mentioned that: "Visualization ideas are insufficient. Only looking a specific date does not address to the broad question, it partially does." I have addressed this by adding data from the whole OWID dataset to show on my line chart. The marker also mentioned "colour scale should be wider". I have fixed that as well. Moreover, my part A's choropleth wasn't loading properly unless page is refreshed. I suspect this is why I lost marks under key "P". I fixed that so now it loads properly at initial run. Also, I used more than one visuals, so this should address my mark loss in key "F", though I believe we were only supposed to provide one at that time. Furthermore, I improved my design and widened the colorscale which should address my loss in key "M". Lastly, to my knowledge, "Originality" was not part of marking of part A at that time. But I lost marks on that from key "K" based on that. I would highly appreciate if you could take a look at all these and improve my part A mark if possible. Thank you very much.
+            </p>
+            <br>
+        </section>
+
+    </body>
+
+</html>
